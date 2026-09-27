@@ -1,0 +1,50 @@
+[project]
+name = "trace2pr-backend"
+version = "0.1.0"
+description = "Trace2PR: End-to-end incident response — Alert → Analysis → Fix → PR"
+requires-python = ">=3.12"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [{name = "Trace2PR Team"}]
+
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.30.0",
+    "supabase>=2.10.0",
+    "pydantic>=2.9.0",
+    "pydantic-settings>=2.5.0",
+    "httpx>=0.27.0",
+    "e2b-code-interpreter>=1.0.0",
+    "litellm>=1.50.0",
+    "celery[redis]>=5.4.0",
+    "python-dotenv>=1.0.0",
+    "python-multipart>=0.0.9",
+    "composio-core>=0.4.0",
+    "boto3>=1.34.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.24.0",
+    "ruff>=0.7.0",
+    "mypy>=1.12.0",
+    "httpx>=0.27.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["trace2pr"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
